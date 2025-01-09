@@ -1,0 +1,12 @@
+.idea/
+.venv/
+__pycache__/
+.pytest_cache
+*.pyc
+
+.guides/
+.codio
+.settings
+
+test/
+test_*
