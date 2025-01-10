@@ -1,7 +1,13 @@
 from flask import Flask
 
+from datamanager.sqlite_data_manager import SQLiteDataManager
+
 # Initialize Flask app
 app = Flask(__name__)
+
+data_manager = SQLiteDataManager('moviwebapp.db')
+
+
 
 # Define a test route
 @app.route('/')
