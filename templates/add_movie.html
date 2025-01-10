@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie - MovieWeb App</title>
-</head>
-<body>
-    <h1>Add New Movie for {{ user_name }}</h1>
-    <form action="/users/{{ user_id }}/add_movie" method="POST">
-        <label for="name">Movie Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+{% extends "base.html" %}
+{% block title %}Add New Movie{% endblock %}
+{% block content %}
+<h2>Add New Movie for {{ user_name }}</h2>
 
-        <label for="director">Director:</label><br>
-        <input type="text" id="director" name="director" required><br><br>
+<form method="POST">
+    <label for="title">Movie Name:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
 
-        <label for="year">Year:</label><br>
-        <input type="number" id="year" name="year" required><br><br>
+    <label for="director">Director:</label><br>
+    <input type="text" id="director" name="director"><br><br>
 
-        <label for="rating">Rating:</label><br>
-        <input type="number" id="rating" name="rating" step="0.1" min="0" max="10"><br><br>
+    <label for="year">Year:</label><br>
+    <input type="text" id="year" name="year"><br><br>
 
-        <button type="submit">Add Movie</button>
-    </form>
-</body>
-</html>
+    <label for="rating">Rating:</label><br>
+    <input type="number" id="rating" name="rating" step="0.1"><br><br>
+
+    <button type="submit">Add Movie</button>
+</form>
+
+<a href="/users/{{ user_id }}"><button>Back to Movies</button></a>
+{% endblock %}

@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Movies - MovieWeb App</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { text-decoration: none; color: #007BFF; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-    <h1>{{ user_name }}'s Favorite Movies</h1>
-    <ul>
-        {% for movie in movies %}
-            <li>
-                {{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }}
-                <a href="/users/{{ user_id }}/update_movie/{{ movie.id }}">Edit</a> |
-                <a href="/users/{{ user_id }}/delete_movie/{{ movie.id }}" style="color: red;">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/users/{{ user_id }}/add_movie">Add New Movie</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}{{ user_name }}'s Favorite Movies{% endblock %}
+{% block content %}
+<h2>{{ user_name }}'s Favorite Movies</h2>
+
+<ul>
+    {% for movie in movies %}
+    <li>
+        {{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }}
+        <a href="/users/{{ user_id }}/update_movie/{{ movie.id }}">Edit</a> |
+        <a href="/users/{{ user_id }}/delete_movie/{{ movie.id }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="/users/{{ user_id }}/add_movie"><button>Add New Movie</button></a>
+{% endblock %}

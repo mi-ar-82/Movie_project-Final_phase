@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Movie - MovieWeb App</title>
-</head>
-<body>
-    <h1>Update Movie Details for {{ user_name }}</h1>
-    <form action="/users/{{ user_id }}/update_movie/{{ movie.id }}" method="POST">
-        <label for="name">Movie Name:</label><br>
-        <input type="text" id="name" name="name" value="{{ movie.name }}" required><br><br>
+{% extends "base.html" %}
+{% block title %}Update Movie Details{% endblock %}
+{% block content %}
+<h2>Update Movie Details for {{ user_name }}</h2>
 
-        <label for="director">Director:</label><br>
-        <input type="text" id="director" name="director" value="{{ movie.director }}" required><br><br>
+<form method="POST">
+    <label for="name">Movie Name:</label><br>
+    <input type="text" id="name" name="name" value="{{ movie.name }}" required><br><br>
 
-        <label for="year">Year:</label><br>
-        <input type="number" id="year" name="year" value="{{ movie.year }}" required><br><br>
+    <label for="director">Director:</label><br>
+    <input type="text" id="director" name="director" value="{{ movie.director }}"><br><br>
 
-        <label for="rating">Rating:</label><br>
-        <input type="number" id="rating" name="rating" step="0.1" min="0" max="10" value="{{ movie.rating }}"><br><br>
+    <label for="year">Year:</label><br>
+    <input type="text" id="year" name="year" value="{{ movie.year }}"><br><br>
 
-        <button type="submit">Update Movie</button>
-    </form>
-</body>
-</html>
+    <label for="rating">Rating:</label><br>
+    <input type="number" id="rating" name="rating" step="0.1" value="{{ movie.rating }}"><br><br>
+
+    <button type="submit">Update Movie</button>
+</form>
+
+<a href="/users/{{ user_id }}"><button>Back to Movies</button></a>
+{% endblock %}
