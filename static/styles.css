@@ -1,106 +1,118 @@
 /* CSS Variables */
 :root {
-    --eggplant: #713e5aff;
-    --mint: #63a375ff;
-    --sunset: #edc79bff;
-    --burnt-sienna: #d57a66ff;
-    --blush: #ca6680ff;
+    --eggplant: #713e5a; /* Removed unnecessary 'ff' for full opacity - default */
+    --mint: #63a375;
+    --sunset: #edc79b;
+    --burnt-sienna: #d57a66;
+    --blush: #ca6680;
+    --light-gray: #eee; /* Added a light gray for borders */
+    --dark-gray: #333; /* Added a dark gray for better text contrast in some cases */
 }
 
-/* General Styles */
+/* Base Styles (apply to all elements) */
+* {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: white; /* Background behind the container */
+    background-color: white;
+    color: var(--dark-gray); /* Improved default text color */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh; /* Ensure full height of viewport */
+    min-height: 100vh;
 }
 
 /* Main Container */
 .container {
     max-width: 800px;
     width: 90%;
-    height: 80vh; /* Set container height to 80% of viewport height */
-    padding: 20px; /* Padding all around */
-    background-color: var(--sunset); /* Sunset-colored background for the container */
-    border-radius: 15px; /* Larger corner radius for the main container */
+    margin: 20px auto; /* Centers the container horizontally */
+    padding: 20px;
+    background-color: var(--sunset);
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Allows container to expand and fill available space */
 }
 
 /* Header */
 header {
     background-color: var(--eggplant);
     color: white;
-    padding: 10px;
+    padding: 15px; /* Slightly increased padding */
     text-align: center;
-    border-radius: 10px; /* Smaller corner radius for sub-container */
+    border-radius: 10px 10px 0 0; /* Rounded top corners only */
 }
 
 /* Navigation Bar */
 nav {
     background-color: var(--mint);
     padding: 10px;
-    border-radius: 10px; /* Smaller corner radius for sub-container */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners only */
+    margin-bottom: 20px; /* Added margin for spacing */
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin-right: 15px;
+    margin: 0 15px; /* Use margin on both sides for better spacing */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
 }
 
 nav a:hover {
     text-decoration: underline;
+    color: var(--sunset); /* Change color on hover */
 }
 
 /* Flash Messages */
 .flash-messages {
-    margin-top: 20px;
+    margin-bottom: 20px; /* Consistent spacing */
 }
 
 .flash {
     padding: 10px;
-    border-radius: 5px; /* Smaller corner radius for flash messages */
+    border-radius: 5px;
     margin-bottom: 10px;
     text-align: center;
+    color: white; /* Consistently white text */
 }
 
 .flash.success {
     background-color: var(--mint);
-    color: white;
 }
 
 .flash.error {
     background-color: var(--burnt-sienna);
-    color: white;
 }
 
 /* List Styles */
-ul.styled-list {
-    list-style-type: none; /* Remove default bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 20px 0;
-    border-collapse: collapse; /* Ensure borders look like a table */
+.styled-list { /* Removed unnecessary ul tag */
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Removed bottom margin, let container handle spacing */
+    border-collapse: collapse;
     width: 100%;
 }
 
-ul.styled-list li {
-    color: black !important; /* Ensure black font */
+.styled-list li {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--light-gray); /* Use variable for border color */
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
-ul.styled-list li:last-child {
-    border-bottom: none; /* Remove the last item's border */
+.styled-list li:last-child {
+    border-bottom: none;
+}
+
+.styled-list li:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle background on hover for list items */
 }
 
 /* General Button Styles */
@@ -112,31 +124,36 @@ button, .btn {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 button:hover, .btn:hover {
-    background-color: var(--burnt-sienna); /* Change color on hover */
+    background-color: var(--burnt-sienna);
 }
 
-
 /* Buttons in List Items */
-ul.styled-list li button {
-    background-color: var(--mint);
-    color: white;
-    border: none;
-    border-radius: 5px;
+.styled-list li button { /* More specific selector */
     padding: 5px 10px;
     margin-left: 10px;
 }
 
-ul.styled-list li button:hover {
-    background-color: var(--burnt-sienna); /* Change color on hover */
+/* Action Buttons in List Items */
+.styled-list li .list-action-button {
+    background-color: var(--mint);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    float: left;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the <a> behave like a block element for padding/margin */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-/* Disable hover effects for list text */
-ul.styled-list li span:hover {
-    background-color: transparent; /* Ensure no hover effect on text */
+.styled-list li .list-action-button:hover {
+    background-color: var(--burnt-sienna);
 }
 
 
@@ -144,5 +161,6 @@ ul.styled-list li span:hover {
 /* Footer */
 footer {
     text-align: center;
-    margin-top: 20px; /* Space between the container and footer */
+    margin-top: auto; /* Push footer to the bottom */
+    padding: 20px 0;
 }

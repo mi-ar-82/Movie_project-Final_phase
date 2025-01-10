@@ -20,11 +20,11 @@
             <span>{{ movie.title }} ({{ movie.year }}) - Directed by {{ movie.director }}</span>
             <!-- Action Buttons -->
             <div>
-                <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}">
-                    <button>Update</button>
+                <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}" class="list-action-button">
+                    Update
                 </a>
                 <form method="POST" action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}" style="display: inline;">
-                    <button type="submit" style="background-color: var(--burnt-sienna); color: white;">Delete</button>
+                    <button type="submit" style="float: left" class="list-action-button">Delete</button>
                 </form>
             </div>
         </li>
