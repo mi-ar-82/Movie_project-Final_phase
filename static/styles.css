@@ -1,20 +1,51 @@
+/* CSS Variables */
+:root {
+    --eggplant: #713e5aff;
+    --mint: #63a375ff;
+    --sunset: #edc79bff;
+    --burnt-sienna: #d57a66ff;
+    --blush: #ca6680ff;
+}
+
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: white; /* Background behind the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height of viewport */
 }
 
+/* Main Container */
+.container {
+    max-width: 800px;
+    width: 90%;
+    height: 80vh; /* Set container height to 80% of viewport height */
+    padding: 20px; /* Padding all around */
+    background-color: var(--sunset); /* Sunset-colored background for the container */
+    border-radius: 15px; /* Larger corner radius for the main container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
 header {
-    background-color: #007bff;
+    background-color: var(--eggplant);
     color: white;
     padding: 10px;
     text-align: center;
+    border-radius: 10px; /* Smaller corner radius for sub-container */
 }
 
+/* Navigation Bar */
 nav {
-    background-color: #0056b3;
+    background-color: var(--mint);
     padding: 10px;
+    border-radius: 10px; /* Smaller corner radius for sub-container */
 }
 
 nav a {
@@ -27,15 +58,30 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
+/* Flash Messages */
+.flash-messages {
+    margin-top: 20px;
 }
 
+.flash {
+    padding: 10px;
+    border-radius: 5px; /* Smaller corner radius for flash messages */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.flash.success {
+    background-color: var(--mint);
+    color: white;
+}
+
+.flash.error {
+    background-color: var(--burnt-sienna);
+    color: white;
+}
+
+/* Footer */
 footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 20px; /* Space between the container and footer */
 }
