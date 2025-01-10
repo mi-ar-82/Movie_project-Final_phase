@@ -1,17 +1,19 @@
 {% extends "base.html" %}
-{% block title %}{{ user_name }}'s Favorite Movies{% endblock %}
-{% block content %}
-<h2>{{ user_name }}'s Favorite Movies</h2>
 
+{% block title %}{{ user_name }}'s Favorite Movies{% endblock %}
+
+{% block content %}
+<h1>{{ user_name }}'s Favorite Movies</h1>
 <ul>
     {% for movie in movies %}
-    <li>
-        {{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }}
-        <a href="/users/{{ user_id }}/update_movie/{{ movie.id }}">Edit</a> |
-        <a href="/users/{{ user_id }}/delete_movie/{{ movie.id }}">Delete</a>
-    </li>
+        <li>
+            {{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }}
+            <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}" class="btn btn-primary">Update</a>
+            <form action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?');">Delete</button>
+            </form>
+        </li>
     {% endfor %}
 </ul>
-
-<a href="/users/{{ user_id }}/add_movie"><button>Add New Movie</button></a>
+<a href="{{ url_for('add_movie', user_id=user_id) }}" class="btn btn-success">Add a New Movie</a>
 {% endblock %}

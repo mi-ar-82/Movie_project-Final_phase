@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Movie Management App{% endblock %}</title>
+    <title>{% block title %}Movie Web App{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<header>
-    <h1>Movie Management App</h1>
-</header>
-<nav>
-    <a href="/">Home</a> |
-    <a href="/users">Users</a> |
-    <a href="/add_user">Add User</a>
-</nav>
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-<footer>
-    <p>&copy; 2025 Movie Management App. All rights reserved.</p>
-</footer>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('list_users') }}">Users</a></li>
+            <li><a href="{{ url_for('add_user') }}">Add User</a></li>
+        </ul>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {{ current_year }} Movie Web App. All rights reserved.</p>
+    </footer>
 </body>
 </html>

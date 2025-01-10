@@ -9,4 +9,6 @@ __pycache__/
 .settings
 
 test/
+.tests/
+tests/
 test_*
