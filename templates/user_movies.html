@@ -17,7 +17,7 @@
     {% for movie in movies %}
         <li style="padding: 10px; margin-bottom: 10px; border-bottom: 1px solid #ccc;">
             <!-- Movie Details -->
-            <span>{{ movie.title }} ({{ movie.year }}) - Directed by {{ movie.director }}</span>
+            <span>{{ movie.name }} ({{ movie.year }}) - directed by {{ movie.director }}</span>
             <!-- Action Buttons -->
             <div>
                 <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}" class="list-action-button">

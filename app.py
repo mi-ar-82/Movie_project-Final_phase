@@ -2,10 +2,16 @@ import os
 import logging
 from flask import Flask, request, render_template, redirect, url_for, abort, flash
 import omdb
+from dotenv import load_dotenv
 from datamanager.sqlite_data_manager import SQLiteDataManager, db
-from config.omdb_api_key import OMDB_API_KEY
+#from config.omdb_api_key import OMDB_API_KEY
 from utils import fetch_movie_details
 from datamanager.sqlite_data_manager import User, Movie
+
+# Load environment variables from the .env file
+load_dotenv()
+# Access the OMDb API key
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
 
 # Set the API key for the OMDb library
 omdb.set_default('apikey', OMDB_API_KEY)

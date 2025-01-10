@@ -12,3 +12,5 @@ test/
 .tests/
 tests/
 test_*
+
+.env
