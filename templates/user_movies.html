@@ -3,17 +3,30 @@
 {% block title %}{{ user_name }}'s Favorite Movies{% endblock %}
 
 {% block content %}
-<h1>{{ user_name }}'s Favorite Movies</h1>
-<ul>
+<h2>{{ user_name }}'s Favorite Movies</h2>
+
+<!-- Add Movie Button -->
+<div style="margin-bottom: 20px;">
+    <a href="{{ url_for('add_movie', user_id=user_id) }}" style="text-decoration: none;">
+        <button style="background-color: var(--mint); color: white; padding: 10px 20px; border-radius: 5px;">Add Movie</button>
+    </a>
+</div>
+
+<!-- Movies List -->
+<ul class="styled-list">
     {% for movie in movies %}
-        <li>
-            {{ movie.name }} ({{ movie.year }}) - Directed by {{ movie.director }}
-            <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}" class="btn btn-primary">Update</a>
-            <form action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}" method="post" style="display:inline;">
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?');">Delete</button>
-            </form>
+        <li style="padding: 10px; margin-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <!-- Movie Details -->
+            <span>{{ movie.title }} ({{ movie.year }}) - Directed by {{ movie.director }}</span>
+            <!-- Action Buttons -->
+            <div>
+                <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}">
+                    <button>Update</button>
+                </a><form method="POST" action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}" style="display: inline;">
+                    <button type="submit" style="background-color: var(--burnt-sienna); color: white;">Delete</button>
+                </form>
+            </div>
         </li>
     {% endfor %}
 </ul>
-<a href="{{ url_for('add_movie', user_id=user_id) }}" class="btn btn-success">Add a New Movie</a>
 {% endblock %}

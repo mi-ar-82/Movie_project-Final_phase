@@ -80,6 +80,54 @@ nav a:hover {
     color: white;
 }
 
+/* List Styles */
+ul.styled-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 20px 0;
+    border-collapse: collapse; /* Ensure borders look like a table */
+    width: 100%;
+}
+
+ul.styled-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Add a separating line between items */
+    font-size: 16px;
+    color: black;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Separate text and buttons */
+    align-items: center; /* Align content vertically */
+}
+
+ul.styled-list li:last-child {
+    border-bottom: none; /* Remove the last item's border */
+}
+
+ul.styled-list li span {
+    flex-grow: 1; /* Allow text to take up available space */
+}
+
+/* Buttons in List Items */
+ul.styled-list li button {
+    background-color: var(--mint);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+ul.styled-list li button:hover {
+    background-color: var(--burnt-sienna); /* Change color on hover */
+}
+
+/* Disable hover effects for list text */
+ul.styled-list li span:hover {
+    background-color: transparent; /* Ensure no hover effect on text */
+}
+
+
+
 /* Footer */
 footer {
     text-align: center;
