@@ -1,11 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
-{% block content %}
-<h2>Welcome to the Movie Management App!</h2>
-<p>Manage users and their favorite movies with ease.</p>
 
-<div class="d-flex justify-content-center mt-4">
-    <a href="/users"><button>View Users</button></a>
-    <a href="/add_user"><button>Add User</button></a>
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to User Management</h1>
+    <p>Manage users and their favorite movies with ease.</p>
+
+    <!-- Add Buttons -->
+    <div class="button-group">
+        <a href="{{ url_for('list_users') }}" class="btn">View Users</a>
+        <a href="{{ url_for('add_user') }}" class="btn">Add User</a>
+    </div>
 </div>
 {% endblock %}

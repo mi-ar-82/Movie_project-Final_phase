@@ -59,6 +59,22 @@ def list_users():
         app.logger.error(f"Error fetching users: {str(e)}")
         abort(500)
 
+@app.route('/users/<int:user_id>/delete', methods=['POST'])
+def delete_user(user_id):
+    try:
+        # Use the data manager to delete the user
+        data_manager.delete_user(user_id)
+        flash("User deleted successfully!", "success")
+        return redirect(url_for('list_users'))  # Redirect back to the list of users
+    except ValueError as ve:
+        flash(str(ve), "error")  # Handle cases where the user is not found
+        return redirect(url_for('list_users'))
+    except Exception as e:
+        app.logger.error(f"Error deleting user {user_id}: {str(e)}")
+        flash("An unexpected error occurred while deleting the user.", "error")
+        return redirect(url_for('list_users'))
+
+
 @app.route('/users/<int:user_id>')
 def user_movies(user_id):
     try:
@@ -142,7 +158,6 @@ def update_movie(user_id, movie_id):
     except Exception as e:
         app.logger.error(f"Error fetching movie {movie_id}: {str(e)}")
         abort(500)
-
 
 @app.route('/users/<int:user_id>/delete_movie/<int:movie_id>', methods=['POST'])
 def delete_movie(user_id, movie_id):
